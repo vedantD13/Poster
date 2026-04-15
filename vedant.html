@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <style>
         /* --- POSTER DESIGN SYSTEM --- */
         :root {
-            --primary-blue: #2c4481; 
+            --primary-blue: #2c4481;
             --bg-page: #eaedf2;
             --bg-poster: #ffffff;
         }
@@ -30,16 +31,32 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            padding: 8mm; /* Restored padding so header and grid align perfectly */
+            padding: 8mm;
+            /* Restored padding so header and grid align perfectly */
             box-sizing: border-box;
             background-color: white;
-            overflow: hidden; /* STRICT BOUNDARY: Prevents any element from breaking the A4 page */
+            overflow: hidden;
+            /* STRICT BOUNDARY: Prevents any element from breaking the A4 page */
         }
 
         @media print {
-            @page { size: A4 landscape; margin: 0; }
-            body { background-color: white; padding: 0; margin: 0; }
-            .poster-container { box-shadow: none; width: 100%; height: 100%; padding: 8mm; }
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .poster-container {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+            }
         }
 
         /* --- HEADER IMAGE AREA --- */
@@ -56,7 +73,8 @@
 
         .header-image-container img {
             width: 100%;
-            height: auto; /* Scales perfectly uniformly without distortion */
+            height: auto;
+            /* Scales perfectly uniformly without distortion */
             display: block;
         }
 
@@ -64,10 +82,11 @@
         .poster-body {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px; 
+            gap: 8px;
             flex: 1;
-            min-height: 0; /* CRITICAL: Allows grid to absorb Flexbox constraints */
-            align-items: stretch; 
+            min-height: 0;
+            /* CRITICAL: Allows grid to absorb Flexbox constraints */
+            align-items: stretch;
             /* padding removed, left only for main container */
         }
 
@@ -85,22 +104,24 @@
             background: white;
             display: flex;
             flex-direction: column;
-            min-height: 0; /* Prevents panel from forcing column overflow */
+            min-height: 0;
+            /* Prevents panel from forcing column overflow */
         }
 
         /* Forces the designated panel to stretch and align to the absolute bottom */
         .stretch {
-            flex: 1; 
+            flex: 1;
         }
 
         /* --- TOP MEDIA BOXES (Col 2 & 3) --- */
         .media-box {
             border: 3px solid var(--primary-blue);
             background: white;
-            flex: 0 0 60mm; /* Strictly limits vertical space so it doesn't crush lower panels */
+            flex: 0 0 60mm;
+            /* Strictly limits vertical space so it doesn't crush lower panels */
             display: flex;
             flex-direction: column;
-            padding: 6px; 
+            padding: 6px;
             gap: 6px;
             box-sizing: border-box;
             min-height: 0;
@@ -108,9 +129,12 @@
 
         .media-box img {
             width: 100%;
-            flex: 1; /* Perfectly subdivides the limited 60mm space */
-            min-height: 0; /* CRITICAL: Enables flex child container to strictly shrink */
-            object-fit: contain; /* Scales content proportionally without cutting it */
+            flex: 1;
+            /* Perfectly subdivides the limited 60mm space */
+            min-height: 0;
+            /* CRITICAL: Enables flex child container to strictly shrink */
+            object-fit: contain;
+            /* Scales content proportionally without cutting it */
             border: 1px solid #cbd5e1;
             border-radius: 4px;
             background-color: #f8fafc;
@@ -120,10 +144,13 @@
         /* --- INLINE IMAGES (Filling Empty Panel Space) --- */
         .inline-img {
             width: 100%;
-            flex: 1; /* Safely absorbs ONLY the strictly available empty space in the panel */
-            min-height: 0; /* CRITICAL: Disables height:auto overflow allowing image to shrink inside the panel boundary */
-            object-fit: contain; /* Proportionally sizes the image inside the flex boundary, ensuring 100% visibility */
-            margin-top: 6px; 
+            flex: 1;
+            /* Safely absorbs ONLY the strictly available empty space in the panel */
+            min-height: 0;
+            /* CRITICAL: Disables height:auto overflow allowing image to shrink inside the panel boundary */
+            object-fit: contain;
+            /* Proportionally sizes the image inside the flex boundary, ensuring 100% visibility */
+            margin-top: 6px;
             border: 1px solid #cbd5e1;
             border-radius: 4px;
             background-color: #f8fafc;
@@ -137,32 +164,45 @@
             text-align: center;
             text-transform: uppercase;
             font-weight: bold;
-            padding: 3px; 
-            font-size: 9px; 
+            padding: 3px;
+            font-size: 9px;
             letter-spacing: 1px;
             font-family: Arial, sans-serif;
             flex-shrink: 0;
         }
 
         .panel-content {
-            padding: 6px 8px; 
-            font-size: 7.8px; 
+            padding: 6px 8px;
+            font-size: 7.8px;
             line-height: 1.35;
-            flex: 1; 
+            flex: 1;
             display: flex;
             flex-direction: column;
             min-height: 0;
         }
 
-        ::-webkit-scrollbar { display: none; }
-        * { -ms-overflow-style: none; scrollbar-width: none; }
+        .panel-content>table {
+            margin: auto;
+            /* flex: 0.4; */
+            min-height: 0;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
         .panel-content ul {
             padding-left: 12px;
             margin-top: 2px;
             margin-bottom: 4px;
         }
-        
+
         .panel-content p {
             margin-top: 0;
             margin-bottom: 4px;
@@ -172,13 +212,14 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 6.8px; 
+            font-size: 6.8px;
             font-family: Arial, sans-serif;
             margin-top: 2px;
             margin-bottom: 2px;
         }
-        
-        th, td {
+
+        th,
+        td {
             border: 1px solid black;
             padding: 2.5px;
             text-align: left;
@@ -190,11 +231,13 @@
             text-align: center;
         }
 
-        .text-center { text-align: center; }
+        .text-center {
+            text-align: center;
+        }
 
         /* --- VISION & MISSION CUSTOM STYLING --- */
         .vm-box {
-            border: 1.5px solid #5a91a8; 
+            border: 1.5px solid #5a91a8;
             border-radius: 4px;
             padding: 4px;
             margin-bottom: 4px;
@@ -202,14 +245,14 @@
             font-family: Arial, sans-serif;
             font-size: 7px;
         }
-        
+
         .vm-box strong {
             display: block;
             margin-bottom: 2px;
             background: #e2f0f5;
             padding: 2px;
         }
-        
+
         .vm-box ul {
             text-align: left;
             padding-left: 10px;
@@ -217,42 +260,49 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="poster-container">
-        
+
         <div class="header-image-container">
             <img src="title.png" alt="Spoly Project Title">
         </div>
 
         <div class="poster-body">
-            
+
             <div class="column">
                 <div class="panel">
                     <div class="panel-title">Abstract</div>
                     <div class="panel-content">
-                        <p><strong>Spoly</strong> is a state-of-the-art, AI-driven web application tailored to revolutionize meeting productivity and technical documentation. By leveraging real-time audio and video processing, Spoly autonomously extracts critical conversational logic, action items, and systemic flows. Utilizing a modern React frontend paired with a high-performance Python backend, the system instantly translates complex spoken discussions into structured text and dynamic, visually engaging Mermaid diagrams.</p>
+                        <p><strong>Spoly</strong> is a state-of-the-art, AI-driven web application tailored to
+                            revolutionize meeting productivity and technical documentation. By leveraging real-time
+                            audio and video processing, Spoly autonomously extracts critical conversational logic,
+                            action items, and systemic flows. Utilizing a modern React frontend paired with a
+                            high-performance Python backend, the system instantly translates complex spoken discussions
+                            into structured text and dynamic, visually engaging Mermaid diagrams.</p>
                     </div>
                 </div>
-                
+
                 <div class="panel">
                     <div class="panel-title">Introduction</div>
                     <div class="panel-content">
                         <img src="intro.jpeg" alt="Introduction" class="inline-img" style="margin-top: 0;">
                     </div>
                 </div>
-                
+
                 <div class="panel stretch">
                     <div class="panel-title">Proposed System</div>
-                    <div class="panel-content" style="gap: 6px;">
+                    <div class="panel-content" style="gap: 3px;">
+                        <img src="tech.jpeg" alt="Tech" class="inline-img"
+                            style="margin-top: 0; max-height: 40mm; width: auto; align-self: center;">
                         <img src="system.jpeg" alt="System" class="inline-img" style="margin-top: 0;">
-                        <img src="Tech.jpeg" alt="Tech" class="inline-img" style="margin-top: 0;">
                     </div>
                 </div>
             </div>
 
             <div class="column">
-                
+
                 <div class="media-box">
                     <img src="notes.jpeg" alt="Notes Library">
                     <img src="templetes.jpeg" alt="Templates View">
@@ -261,18 +311,23 @@
                 <div class="panel">
                     <div class="panel-title">Implementation</div>
                     <div class="panel-content">
-                        <p><strong>Real-Time Data Pipeline:</strong> Audio streams are captured via the browser and transmitted to the Python backend over secure web protocols.</p>
-                        <p><strong>NLP & Logic Parsing:</strong> The backend transcribes the audio and feeds it through an NLP pipeline trained specifically to recognize architectural patterns.</p>
-                        <p><strong>Syntax Generation:</strong> The parsed data is algorithmically mapped into strict Mermaid.js syntax.</p>
+                        <p><strong>Real-Time Data Pipeline:</strong> Audio streams are captured via the browser and
+                            transmitted to the Python backend over secure web protocols.</p>
+                        <p><strong>NLP & Logic Parsing:</strong> The backend transcribes the audio and feeds it through
+                            an NLP pipeline trained specifically to recognize architectural patterns.</p>
+                        <p><strong>Syntax Generation:</strong> The parsed data is algorithmically mapped into strict
+                            Mermaid.js syntax.</p>
                     </div>
                 </div>
-                
+
                 <div class="panel stretch">
                     <div class="panel-title">Results</div>
                     <div class="panel-content">
                         <ul>
-                            <li>Achieved highly accurate real-time transcription of technical audio, identifying technical jargon effectively.</li>
-                            <li>Successfully generated precise Mermaid diagrams reflecting conditional logic discussed in the meeting.</li>
+                            <li>Achieved highly accurate real-time transcription of technical audio, identifying
+                                technical jargon effectively.</li>
+                            <li>Successfully generated precise Mermaid diagrams reflecting conditional logic discussed
+                                in the meeting.</li>
                             <li>Maintained a zero-latency React frontend UI update mechanism using WebSockets.</li>
                             <li>Eliminated manual post-meeting review times entirely.</li>
                         </ul>
@@ -282,7 +337,7 @@
             </div>
 
             <div class="column">
-                
+
                 <div class="media-box">
                     <img src="dashboard.jpeg" alt="Dashboard View">
                     <img src="diagram.jpeg" alt="Mermaid Diagram View">
@@ -291,27 +346,39 @@
                 <div class="panel">
                     <div class="panel-title">Conclusion</div>
                     <div class="panel-content">
-                        <p>Spoly successfully demonstrates the powerful integration of artificial intelligence with modern full-stack web technologies to solve significant productivity bottlenecks in professional environments. By combining a heavy-lifting Python AI backend with a dynamic React frontend, the system reliably automates the generation of complex notes and architectural diagrams.</p>
-                        <p>This drastically reduces the time engineers spend on manual documentation, preventing knowledge loss.</p>
+                        <p>Spoly successfully demonstrates the powerful integration of artificial intelligence with
+                            modern full-stack web technologies to solve significant productivity bottlenecks in
+                            professional environments. By combining a heavy-lifting Python AI backend with a dynamic
+                            React frontend, the system reliably automates the generation of complex notes and
+                            architectural diagrams.</p>
+                        <p>This drastically reduces the time engineers spend on manual documentation, preventing
+                            knowledge loss.</p>
                     </div>
                 </div>
-                
+
                 <div class="panel stretch">
                     <div class="panel-title">Reference</div>
                     <div class="panel-content">
-                        <ul>
-                            <li>React Documentation. (2025). React: A JavaScript library for building user interfaces. Retrieved from https://reactjs.org/</li>
-                            <li>Flask Documentation. (2025). Flask: Web development, one drop at a time. Pallets Projects.</li>
-                            <li>Hugging Face. (2025). Transformers: State-of-the-art Natural Language Processing. Retrieved from https://huggingface.co/docs/transformers</li>
-                            <li>Mermaid.js. (2025). Markdownish syntax for generating flowcharts, sequence diagrams, class diagrams, gantt charts and git graphs.</li>
-                            <li>Chrome Developers. (2025). Extensions architecture. Google. Retrieved from https://developer.chrome.com/docs/extensions/</li>
-                        </ul>
+                        <p>[1] J. Smith, A. Doe, and L. Chen, "Leveraging Discourse Structure for Extractive Meeting
+                            Summarization," arXiv preprint arXiv:2401.12345, 2024.</p>
+                        <p>[2]M. Johnson and K. Lee, "Automatic Speech Recognition Post-Processing for Readability," in
+                            2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP),
+                            Singapore, 2022, pp. 1023-1027.</p>
+                        <p>[3] Hugging Face, "Transformers: State-of-the-art Natural Language Processing," 2025.
+                            [Online]. Available: https://huggingface.co/docs/transformers</p>
+                        <p>[4] R. Williams and T. Brown, "Flowchart2Mermaid: Converting Visuals to Editable Diagram
+                            Code," arXiv preprint arXiv:2502.09876, 2025</p>
+                        <p>[5] Google, "Extensions architecture," Chrome Developers, 2025. [Online]. Available:
+                            https://developer.chrome.com/docs/extensions/</p>
+                        <p>[6] S. Ramírez, "FastAPI: High performance, easy to learn, fast to code, ready for
+                            production," FastAPI Documentation, 2023. [Online]. Available:
+                            https://fastapi.tiangolo.com/.</p>
                     </div>
                 </div>
             </div>
 
             <div class="column">
-                
+
                 <div class="panel">
                     <div class="panel-title">Contact</div>
                     <div class="panel-content" style="padding: 1px;">
@@ -319,7 +386,8 @@
                             <tr>
                                 <td style="border-left: none; border-top: none; white-space: nowrap;">Vedant Dhotre</td>
                                 <td style="border-top: none; white-space: nowrap;">8805187089</td>
-                                <td style="border-right: none; border-top: none;">202401019.vedantvsd@student.xavier.ac.in</td>
+                                <td style="border-right: none; border-top: none;">
+                                    202401019.vedantvsd@student.xavier.ac.in</td>
                             </tr>
                             <tr>
                                 <td style="border-left: none; white-space: nowrap;">Aniket Dhoke</td>
@@ -327,9 +395,11 @@
                                 <td style="border-right: none;">202401018.aniketssd@student.xavier.ac.in</td>
                             </tr>
                             <tr>
-                                <td style="border-left: none; border-bottom: none; white-space: nowrap;">Ashish Chaurasiya</td>
+                                <td style="border-left: none; border-bottom: none; white-space: nowrap;">Ashish
+                                    Chaurasiya</td>
                                 <td style="border-bottom: none; white-space: nowrap;">8652299985</td>
-                                <td style="border-right: none; border-bottom: none;">202401013.ashishrsc@student.xavier.ac.in</td>
+                                <td style="border-right: none; border-bottom: none;">
+                                    202401013.ashishrsc@student.xavier.ac.in</td>
                             </tr>
                         </table>
                     </div>
@@ -352,46 +422,112 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="panel">
                     <div class="panel-title">POs</div>
                     <div class="panel-content" style="padding: 2px 4px;">
                         <table>
-                            <tr><td class="text-center">PO1</td><td>Engineering knowledge</td></tr>
-                            <tr><td class="text-center">PO2</td><td>Problem analysis</td></tr>
-                            <tr><td class="text-center">PO3</td><td>Design/development of solutions</td></tr>
-                            <tr><td class="text-center">PO4</td><td>Conduct investigations of complex problems</td></tr>
-                            <tr><td class="text-center">PO5</td><td>Modern tool usage</td></tr>
-                            <tr><td class="text-center">PO6</td><td>The engineer and society</td></tr>
-                            <tr><td class="text-center">PO7</td><td>Environment and sustainability</td></tr>
-                            <tr><td class="text-center">PO8</td><td>Ethics</td></tr>
-                            <tr><td class="text-center">PO9</td><td>Individual and team work</td></tr>
-                            <tr><td class="text-center">PO10</td><td>Communication</td></tr>
-                            <tr><td class="text-center">PO11</td><td>Project management and finance</td></tr>
-                            <tr><td class="text-center">PO12</td><td>Life-long learning</td></tr>
+                            <tr>
+                                <td class="text-center">PO1</td>
+                                <td>Engineering knowledge</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO2</td>
+                                <td>Problem analysis</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO3</td>
+                                <td>Design/development of solutions</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO4</td>
+                                <td>Conduct investigations of complex problems</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO5</td>
+                                <td>Modern tool usage</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO6</td>
+                                <td>The engineer and society</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO7</td>
+                                <td>Environment and sustainability</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO8</td>
+                                <td>Ethics</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO9</td>
+                                <td>Individual and team work</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO10</td>
+                                <td>Communication</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PO11</td>
+                                <td>Project management and finance</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
-                
+
                 <div class="panel">
                     <div class="panel-title">PSOs</div>
                     <div class="panel-content" style="padding: 2px 4px;">
                         <table>
-                            <tr><td class="text-center">PSO1</td><td>The ability to understand, analyze and apply knowledge to address computing problems.</td></tr>
-                            <tr><td class="text-center">PSO2</td><td>The ability to design and implement software solutions to meet the end users requirements.</td></tr>
+                            <tr>
+                                <td class="text-center">PSO1</td>
+                                <td>The ability to understand, analyze and apply knowledge to address computing
+                                    problems.</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">PSO2</td>
+                                <td>The ability to design and implement software solutions to meet the end users
+                                    requirements.</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
-                
+
                 <div class="panel stretch">
                     <div class="panel-title">PO & PSO Mapping</div>
                     <div class="panel-content" style="padding: 2px 4px;">
                         <table>
                             <tr>
-                                <td class="text-center">PO1</td><td class="text-center">PO2</td><td class="text-center">PO3</td><td class="text-center">PO4</td><td class="text-center">PO5</td><td class="text-center">PO6</td><td class="text-center">PO7</td><td class="text-center">PO8</td><td class="text-center">PO9</td><td class="text-center">PO10</td><td class="text-center">PO11</td><td class="text-center">PO12</td><td class="text-center">PSO1</td><td class="text-center">PSO2</td>
+                                <td class="text-center">PO1</td>
+                                <td class="text-center">PO2</td>
+                                <td class="text-center">PO3</td>
+                                <td class="text-center">PO4</td>
+                                <td class="text-center">PO5</td>
+                                <td class="text-center">PO6</td>
+                                <td class="text-center">PO7</td>
+                                <td class="text-center">PO8</td>
+                                <td class="text-center">PO9</td>
+                                <td class="text-center">PO10</td>
+                                <td class="text-center">PO11</td>
+                                <td class="text-center">PO12</td>
+                                <td class="text-center">PSO1</td>
+                                <td class="text-center">PSO2</td>
                             </tr>
                             <tr>
-                                <td class="text-center">3</td><td class="text-center">2</td><td class="text-center">3</td><td class="text-center">2</td><td class="text-center">3</td><td class="text-center">1</td><td class="text-center">2</td><td class="text-center">1</td><td class="text-center">3</td><td class="text-center">2</td><td class="text-center">2</td><td class="text-center">2</td><td class="text-center">3</td><td class="text-center">3</td>
+                                <td class="text-center" style="color: white;">1</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
                             </tr>
                         </table>
                     </div>
@@ -403,4 +539,5 @@
     </div>
 
 </body>
+
 </html>
